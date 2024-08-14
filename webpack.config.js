@@ -4,11 +4,11 @@ module.exports = {
   entry: './src/index.js',  // Your entry file
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'build'),  // Ensure this matches your deployment directory
   },
   devServer: {
     static: {
-      directory: path.join(__dirname, 'build'),
+      directory: path.join(__dirname, 'build'),  // This should match the output path
     },
     historyApiFallback: true,  // This line is crucial for React Router
     compress: true,

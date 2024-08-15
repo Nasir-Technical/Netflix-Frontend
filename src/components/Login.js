@@ -21,56 +21,51 @@ const Login = () => {
     const loginHandler = () => {
         setIsLogin(!isLogin);
     }
-    const getInputData = async (e)=>{
+    const getInputData = async (e) => {
         e.preventDefault();
         dispatch(setLoading(true));
-        if(isLogin){
-            //login
-            const user = {email,password}; 
-            try {
-                const res = await axios.post(`${API_END_POINT}/login`, user,{
-                    headers:{
-                        'Content-Type':'application/json'
-                    },
-                    withCredentials:true
-                });
-                if(res.data.success){
-                    toast.success(res.data.message);
+    
+        const user = isLogin ? { email, password } : { fullName, email, password };
+        const endpoint = isLogin ? "/login" : "/register";
+    
+        try {
+            const res = await axios.post(`${API_END_POINT}${endpoint}`, user, {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                withCredentials: true
+            });
+    
+            // Pehle response ko dekhte hain
+            console.log("API Response: ", res);
+    
+            if (res.data && res.data.success) {
+                toast.success(res.data.message);
+    
+                if (isLogin) {
+                    dispatch(setUser(res.data.user));
+                    navigate("/browse");
+                } else {
+                    setIsLogin(true);
                 }
-                dispatch(setUser(res.data.user));
-                navigate("/browse");
-            } catch (error) {
-                toast.error(error.response.data.message);
-                console.log(error);
-            } finally {
-                dispatch(setLoading(false));
+            } else {
+                toast.error("Unexpected response format");
             }
-        }else{
-            //register
-            dispatch(setLoading(true));
-            const user = {fullName, email, password};
-            try {
-                const res = await axios.post(`${API_END_POINT}/register`,user,{
-                    headers:{
-                        'Content-Type':'application/json'
-                    },
-                    withCredentials:true
-                });
-                if(res.data.success){
-                    toast.success(res.data.message);
-                }
-                setIsLogin(true);
-            } catch (error) {
+        } catch (error) {
+            console.error("API Error: ", error);
+            if (error.response && error.response.data && error.response.data.message) {
                 toast.error(error.response.data.message);
-                console.log(error);
-            } finally{
-                dispatch(setLoading(false));
+            } else {
+                toast.error("An unknown error occurred");
             }
+        } finally {
+            dispatch(setLoading(false));
+            setFullName("");
+            setEmail("");
+            setPassword("");
         }
-        setFullName("");
-        setEmail("");
-        setPassword("");
-    }
+    };
+    
     
     return (
         <div>

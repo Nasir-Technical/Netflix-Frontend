@@ -23,23 +23,25 @@ const Login = () => {
     const getInputData = async (e) => {
         e.preventDefault();
         dispatch(setLoading(true));
-
+    
         const user = isLogin ? { email, password } : { fullName, email, password };
         const endpoint = isLogin ? "/login" : "/register";
-
+    
         try {
-            const res = await axios.post(`${API_END_POINT}${endpoint}`, user, {
+            const response = await axios.post(`${API_END_POINT}${endpoint}`, user, {
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 withCredentials: true
             });
-
-            if (res.data && res.data.success) {
-                toast.success(res.data.message);
-
+    
+            console.log("API Response: ", response);
+    
+            if (response.data && response.data.success) {
+                toast.success(response.data.message);
+    
                 if (isLogin) {
-                    dispatch(setUser(res.data.user));
+                    dispatch(setUser(response.data.user));
                     navigate("/browse");
                 } else {
                     setIsLogin(true);
@@ -61,6 +63,7 @@ const Login = () => {
             setPassword("");
         }
     };
+    
 
     return (
         <div>
@@ -72,8 +75,8 @@ const Login = () => {
                 <h1 className='text-3xl text-white mb-5 font-bold'>{isLogin ? "Login" : "Signup"}</h1>
                 <div className='flex flex-col'>
                     {!isLogin && <input value={fullName} onChange={(e) => setFullName(e.target.value)} type='text' placeholder='Fullname' className='outline-none p-3 my-2 rounded-sm bg-gray-800 text-white' />}
-                    <input value={email} onChange={(e) => setEmail(e.target.value)} type='email' placeholder='Email' className='outline-none p-3 my-2 rounded-sm bg-gray-800 text-white' />
-                    <input value={password} onChange={(e) => setPassword(e.target.value)} type='password' placeholder='Password' className='outline-none p-3 my-2 rounded-sm bg-gray-800 text-white' />
+                    <input value={email} onChange={(e) => setEmail(e.target.value)} type='email' required placeholder='Email' className='outline-none p-3 my-2 rounded-sm bg-gray-800 text-white' />
+                    <input value={password} onChange={(e) => setPassword(e.target.value)} type='password' required placeholder='Password' className='outline-none p-3 my-2 rounded-sm bg-gray-800 text-white' />
                     <button type='submit' className='bg-red-600 mt-6 p-3 text-white rounded-sm font-medium'>{isLoading ? "Loading..." : (isLogin ? "Login" : "Signup")}</button>
                     <p className='text-white mt-2'>{isLogin ? "New to Netflix?" : "Already have an account?"}<span onClick={loginHandler} className='ml-1 text-blue-900 font-medium cursor-pointer'>{isLogin ? "Signup" : "Login"}</span></p>
                 </div>

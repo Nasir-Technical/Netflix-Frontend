@@ -23,10 +23,10 @@ const Login = () => {
     const getInputData = async (e) => {
         e.preventDefault();
         dispatch(setLoading(true));
-    
+
         const user = isLogin ? { email, password } : { fullName, email, password };
         const endpoint = isLogin ? "/login" : "/register";
-    
+
         try {
             const response = await axios.post(`${API_END_POINT}${endpoint}`, user, {
                 headers: {
@@ -34,12 +34,12 @@ const Login = () => {
                 },
                 withCredentials: true
             });
-    
+
             console.log("API Response: ", response);
-    
+
             if (response.data && response.data.success) {
                 toast.success(response.data.message);
-    
+
                 if (isLogin) {
                     dispatch(setUser(response.data.user));
                     navigate("/browse");
@@ -63,7 +63,7 @@ const Login = () => {
             setPassword("");
         }
     };
-    
+
 
     return (
         <div>

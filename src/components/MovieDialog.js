@@ -55,10 +55,14 @@ export default function MovieDialog() {
             </Button>
           </Toolbar>
         </AppBar>
-        <DialogContent className="p-0 m-0 relative overflow-hidden">
-          <VideoBackground movieId={id} />
+  
+        <DialogContent className="p-0 m-0 relative overflow-hidden h-[calc(100vh-64px)] sm:h-[calc(100vh-56px)]">
+          <div className="w-full h-full">
+            <VideoBackground movieId={id} />
+          </div>
         </DialogContent>
       </Dialog>
     </React.Fragment>
-  );
+  )
+  
 }

@@ -16,10 +16,18 @@ const MovieCard = ({ posterPath,movieId}) => {
   }
 
   return (
-    <div className='w-48 pr-2' onClick={handleOpen}>
-      <img src={`${TMDB_IMG_URL}/${posterPath}`} alt="movie-banner" />
+    <div
+      className="w-48 pr-2 sm:w-36 sm:pr-1 md:w-44 lg:w-48 cursor-pointer"
+      onClick={handleOpen}
+    >
+      <img
+        src={`${TMDB_IMG_URL}/${posterPath}`}
+        alt="movie-banner"
+        className="w-full h-auto object-cover"
+      />
     </div>
   )
+  
 }
 
 export default MovieCard;

@@ -1,6 +1,6 @@
-export const API_END_POINT = "https://netflix-backend-three.vercel.app/api/v1/user";
+// export const API_END_POINT = "https://netflix-backend-three.vercel.app/api/v1/user";
 
-// export const API_END_POINT = "http://localhost:3000/api/v1/user";
+export const API_END_POINT = "http://localhost:3000/api/v1/user";
 
 export const options = {
     method: 'GET',

@@ -1,6 +1,6 @@
 // export const API_END_POINT = "http://localhost:8080/api/v1/user";
-
-export const API_END_POINT = "http://16.170.203.78:8080/api/v1/user";
+export const API_END_POINT = "https://stockholm-plate-kate-civil.trycloudflare.com/api/v1/user";
+// export const API_END_POINT = "http://16.170.203.78:8080/api/v1/user";
 
 export const options = {
     method: 'GET',

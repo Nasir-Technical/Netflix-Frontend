@@ -23,7 +23,7 @@ const useMovieById = async (movieId) => {
       }
     }
     getMovieById();
-  },[])
+  }, [dispatch, movieId])
 
 }
 

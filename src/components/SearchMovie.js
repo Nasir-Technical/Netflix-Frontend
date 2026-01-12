@@ -28,24 +28,24 @@ const SearchMovie = () => {
     }
 
     return (
-        <>
-            <div className="flex justify-center pt-[10%] w-full px-2 sm:px-4">
+        <div className='min-h-screen bg-netflixDark pt-[100px]'>
+            <div className="flex justify-center w-full px-4">
                 <form
                     onSubmit={submitHandler}
                     className="w-full sm:w-[80%] md:w-[60%] lg:w-[50%]"
                 >
-                    <div className="flex flex-col sm:flex-row sm:justify-between gap-2 sm:gap-4 shadow-md border-2 p-2 border-gray-200 rounded-lg w-full">
+                    <div className="flex items-center bg-[#333] p-1 rounded-sm shadow-xl transition-all duration-300 focus-within:bg-[#444]">
                         <input
                             value={searchMovie}
                             onChange={(e) => {
                                 setSearchMovie(e.target.value);
                             }}
-                            className="w-full outline-none text-black rounded-md text-base sm:text-lg px-2 py-2"
+                            className="bg-transparent w-full outline-none text-white text-sm sm:text-base px-2 sm:px-4 py-2 placeholder:text-netflixLight/50"
                             type="text"
-                            placeholder="Search Movies..."
+                            placeholder="What do you want to watch?"
                         />
-                        <button className="bg-red-800 text-white rounded-md px-4 py-2 text-sm sm:text-base">
-                            {isLoading ? "loading..." : "Search"}
+                        <button className="bg-netflixRed text-white px-4 sm:px-8 py-2 font-bold hover:bg-red-700 transition-colors whitespace-nowrap text-sm sm:text-base">
+                            {isLoading ? "..." : "Search"}
                         </button>
                     </div>
                 </form>
@@ -58,7 +58,7 @@ const SearchMovie = () => {
                     Movie Not Found!!
                 </h1>
             )}
-        </>
+        </div>
     );
 
 }

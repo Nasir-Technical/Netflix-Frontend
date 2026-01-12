@@ -26,8 +26,8 @@ const movieSlice = createSlice({
         getUpcomingMovie:(state,action)=>{
             state.upcomingMovies = action.payload;
         },
-        setToggle:(state)=>{
-            state.toggle = !state.toggle;
+        setToggle:(state, action)=>{
+            state.toggle = action.payload !== undefined ? action.payload : !state.toggle;
         },
         getTrailerMovie:(state,action)=>{
             state.trailerMovie = action.payload;

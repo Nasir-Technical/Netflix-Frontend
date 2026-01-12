@@ -8,18 +8,17 @@ const VideoBackground = ({movieId,bool}) => {
     useMovieById(movieId);
 
     return (
-        <div className="w-full overflow-hidden">
+        <div className="w-full h-full overflow-hidden relative">
           <iframe
-            className={`${
-              bool
-                ? "w-full h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px]"
-                : "w-screen aspect-video"
-            }`}
-            src={`https://www.youtube.com/embed/${trailerMovie?.key}?si=HorxQfzFY2_TAO1W&autoplay=1&mute=1`}
+            className="w-full h-full object-cover scale-[1.3] lg:scale-[1.5]"
+            src={`https://www.youtube.com/embed/${trailerMovie?.key}?si=HorxQfzFY2_TAO1W&autoplay=1&loop=1&playlist=${trailerMovie?.key}`}
             title="YouTube video player"
             frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           ></iframe>
+          <div className='absolute top-0 left-0 w-full h-full bg-black/20 pointer-events-none'></div>
+          <div className='absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-netflixDark to-transparent pointer-events-none'></div>
         </div>
       );
       

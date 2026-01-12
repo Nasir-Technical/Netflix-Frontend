@@ -17,13 +17,13 @@ const MovieCard = ({ posterPath,movieId}) => {
 
   return (
     <div
-      className="w-48 pr-2 sm:w-36 sm:pr-1 md:w-44 lg:w-48 cursor-pointer"
+      className="relative flex-none w-[140px] sm:w-[160px] md:w-[180px] lg:w-[200px] cursor-pointer transition-all duration-300 hover:scale-105 hover:z-20 group"
       onClick={handleOpen}
     >
       <img
         src={`${TMDB_IMG_URL}/${posterPath}`}
         alt="movie-banner"
-        className="w-full h-auto object-cover"
+        className="w-full h-auto object-cover rounded-md shadow-lg group-hover:shadow-2xl transition-all duration-300"
       />
     </div>
   )
